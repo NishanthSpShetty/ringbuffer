@@ -14,7 +14,6 @@ pub struct Full;
 impl<T: Clone + Debug> RingBuffer<T> {
     pub fn new(capacity: usize) -> Result<Self, &'static str> {
         if capacity <= 0 {
-            //need minimum of capacity of 3
             return Err("capacity must be non-negative value");
         }
         return Ok(Self {
@@ -46,7 +45,6 @@ impl<T: Clone + Debug> RingBuffer<T> {
         }
 
         self.full = false;
-
         let ridx = self.read_idx;
 
         let val = &self.storage.get(ridx);
