@@ -31,9 +31,7 @@ impl<T: Clone + Debug> RingBuffer<T> {
         self.storage[self.write_idx] = Some(item);
         self.write_idx = self.advance_idx(self.write_idx);
 
-        if self.write_idx == self.read_idx {
-            self.full = true;
-        }
+        self.full = self.write_idx == self.read_idx;
 
         // all okay here
         return Ok(());
